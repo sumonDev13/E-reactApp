@@ -5,11 +5,30 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Categoris from "../components/Categoris";
 import ThisWeekSpend from "../components/ThisWeekSpend";
 import LastMonthActivities from "../components/LastMonthActivities";
+import { useState } from "react";
+import ExpenseModal from "./ExpenseModal";
+
+ 
 const Dashboard = () => {
+
+
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalOpen = () => {
+    setShowModal(true);
+  };
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="dashboard-container home-page">
       <div className="add-expense">
-        <button>+ Add Expense</button>
+      {/* Expense modal */}
+      {showModal && <ExpenseModal handleClose={handleModalClose} />}
+
+        <button onClick={handleModalOpen}>+ Add Expense</button>
         <img src={user} alt="" />
         <MdOutlineKeyboardArrowDown />
       </div>
@@ -24,6 +43,8 @@ const Dashboard = () => {
 
       {/* Last month activities */}
       <LastMonthActivities />
+
+      
     </div>
   );
 };
