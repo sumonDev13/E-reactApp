@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { ExpenseContext } from '../App';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { CiHome } from "react-icons/ci";
 import { AiFillCar } from "react-icons/ai";
 
 const LastMonthActivities = () => {
+  const { allExpenses, setAllExpenses } = useContext(ExpenseContext);
+  console.log(`allExpenses ${allExpenses}`);
   return (
     <div className="last-month-activities">
       <div className="activities-heading">
@@ -23,10 +26,11 @@ const LastMonthActivities = () => {
         <span>Amount</span>
       </div>
 
-      <div className="monthly-activities">
+      {allExpenses.map((expense) => (
+      <div key={expense.id} className="monthly-activities">
         <div>
           <CiHome className="home-icon" />
-          <h4>Home Electricity Bill</h4>
+          <h4>{expense.title}</h4>
         </div>
 
         <div>
@@ -34,50 +38,13 @@ const LastMonthActivities = () => {
         </div>
 
         <div>
-          <h5>27 / 10 /2021</h5>
+          <h5>{expense.date.toLocaleDateString()}</h5>
         </div>
         <div>
-          <h5>$540</h5>
+          <h5>${expense.amount}</h5>
         </div>
       </div>
-
-      <div className="monthly-activities">
-        <div>
-          <HiOutlineShoppingCart className="cart-icon" />
-          <h4>Home Electricity Bill</h4>
-        </div>
-
-        <div>
-          <span>Successful</span>
-        </div>
-
-        <div>
-          <h5>27 / 10 /2021</h5>
-        </div>
-
-        <div>
-          <h5>$540</h5>
-        </div>
-      </div>
-
-      <div className="monthly-activities">
-        <div>
-          <AiFillCar className="car-icon" />
-          <h4>Home Electricity Bill</h4>
-        </div>
-
-        <div>
-          <span>Successful</span>
-        </div>
-
-        <div>
-          <h5>27 / 10 /2021</h5>
-        </div>
-
-        <div>
-          <h5>$540</h5>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

@@ -205,10 +205,7 @@
     margin-bottom: 5px;
     padding-bottom: 12px;
   }
-  .last-month-activities > div:nth-child(2),
-  .last-month-activities > div:nth-child(3),
-  .last-month-activities > div:nth-child(4),
-  .last-month-activities > div:nth-child(5) {
+  .last-month-activities > div {
     display: flex;
     justify-content: space-between;
   }

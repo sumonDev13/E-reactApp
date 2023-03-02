@@ -1,9 +1,17 @@
-import React, { useState } from "react";
-import "./ExpenseModal.css";
+import React, { useState ,useContext} from 'react';
+import { ExpenseContext } from '../App';
+import './ExpenseModal.css';
 
 const ExpenseModal = ({ handleClose }) => {
-  const [category, setCategory] = useState("");
-  const [amount, setAmount] = useState("");
+  const [expenseName, setExpenseName] = useState('');
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState('');
+  const { allExpenses, setAllExpenses,totalBalance,setTotalBalance } = useContext(ExpenseContext);
+  console.log(`allExpenses ${allExpenses}`);
+
+  const handleExpenseNameChange = (event) => {
+    setExpenseName(event.target.value);
+  };
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
@@ -17,10 +25,25 @@ const ExpenseModal = ({ handleClose }) => {
     event.preventDefault();
 
     // Do something with the category and amount values, e.g. send them to the server
+    const newExpense = {
+      id: allExpenses.length + 1,
+      title: expenseName,
+      category: category,
+      amount: amount,
+      date: new Date(),
+    };
+
+    // Add the new expense to the list of expenses
+    setAllExpenses([...allExpenses, newExpense]);
+
+    // Add the new expense to the total balance
+    setTotalBalance(totalBalance - parseInt(amount));
 
     // Clear the form inputs
-    setCategory("");
-    setAmount("");
+    setExpenseName('');
+    setCategory('');
+    setAmount('');
+
 
     // Close the modal
     handleClose();
@@ -34,6 +57,17 @@ const ExpenseModal = ({ handleClose }) => {
         </span>
         <h2>Add Expense</h2>
         <form onSubmit={handleSubmit}>
+          {/* set title */}
+          <label>
+            Expense Name:
+            <input
+
+              type="text"
+              value={expenseName}
+              onChange={handleExpenseNameChange}
+              placeholder="Enter expense name"
+            />
+          </label>
           <label>
             Category:
             <select value={category} onChange={handleCategoryChange}>

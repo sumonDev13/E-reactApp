@@ -1,47 +1,56 @@
-import React from "react";
-import { CiHome } from "react-icons/ci";
-import { CgGames, CgFileDocument } from "react-icons/cg";
-import { HiOutlineShoppingCart } from "react-icons/hi";
-import { AiFillCar } from "react-icons/ai";
-import { BsKey, BsCameraVideo } from "react-icons/bs";
+import React from 'react';
+import { CiHome } from 'react-icons/ci';
+import { CgGames, CgFileDocument } from 'react-icons/cg';
+import { HiOutlineShoppingCart } from 'react-icons/hi';
+import { AiFillCar } from 'react-icons/ai';
+import { BsKey, BsCameraVideo } from 'react-icons/bs';
 
 const Categoris = () => {
   const categories = [
     {
       icon: <CiHome />,
-      category: "Home",
+      category: 'Home',
+      id: 1,
     },
     {
       icon: <AiFillCar />,
-      category: "Gas",
+      category: 'Gas',
+      id: 2,
     },
     {
       icon: <BsKey />,
-      category: "Security",
+      category: 'Security',
+      id: 3,
     },
     {
       icon: <BsCameraVideo />,
-      category: "Videos",
+      category: 'Videos',
+      id: 4,
     },
     {
       icon: <CgGames />,
-      category: "Games",
+      category: 'Games',
+      id: 5,
     },
     {
       icon: <CgFileDocument />,
-      category: "Papers",
+      category: 'Papers',
+      id: 6,
     },
     {
       icon: <HiOutlineShoppingCart />,
-      category: "Shops",
+      category: 'Shops',
+      id: 7,
     },
     {
       icon: <AiFillCar />,
-      category: "Travel",
+      category: 'Travel',
+      id: 8,
     },
     {
       icon: <AiFillCar />,
-      category: "Service",
+      category: 'Service',
+      id: 9,
     },
   ];
   return (
